@@ -11,7 +11,7 @@ class Shop(models.Model):
     shop_id = models.CharField(max_length=50)
 
     def __str__(self):
-        return self.shop_id
+        return str(self.shop_id)
 
 class Product(models.Model):
     stock_pcs = models.PositiveIntegerField()
@@ -20,7 +20,7 @@ class Product(models.Model):
     vip_only = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.name
+        return str(self.id)
 
 class Order(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True)
@@ -29,12 +29,12 @@ class Order(models.Model):
 
     @property
     def customer(self):
-        return self.customer.id
+        return str(self.customer.id)
 
     @property
     def price(self):
-        return self.product.price
+        return str(self.product.price)
 
     @property
     def shop_id(self):
-        return self.product.shop_id
+        return str(self.product.shop_id)
