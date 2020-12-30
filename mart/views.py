@@ -7,9 +7,11 @@ from .decorators import vip_required, stock_is_enogh
 def home(request):
     products = Product.objects.all()
     customers = Customer.objects.filter()
+    orders = Order.objects.all()
     context = {
         'products': products,
         'customers': customers,
+        'orders': orders,
         }
     return render(request, 'mart/home.html', context=context)
 

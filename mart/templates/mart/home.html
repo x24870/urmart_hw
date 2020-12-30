@@ -30,7 +30,7 @@
 <table>
   <thead>
     <tr>
-      <th>ID</th>
+      <th>product ID</th>
       <th>stock</th>
       <th>price</th>
       <th>shop ID</th>
@@ -50,5 +50,30 @@
   </tbody>
 </table>
 
+<hr>
+
+<h3>Order List</h3>
+<table>
+  <thead>
+    <tr>
+      <th>order ID</th>
+      <th>product ID</th>
+      <th>quantity</th>
+      <th>price</th>
+      <th>shop ID</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for order in orders %}
+    <tr>
+      <td>{{ order.id }}</td>
+      <td>{{ order.product.id }}</td>
+      <td>{{ order.quantity }}</td>
+      <td>{{ order.product.price }}</td>
+      <td>{{ order.product.shop_id }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
 
 {% endblock %}
