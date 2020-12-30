@@ -16,3 +16,14 @@ def vip_required(func):
             return redirect(reverse('mart:home'))
         return func(*args, **kwargs)
     return decorator
+
+def stock_is_enogh(func):
+    def decorator(*args, **kwargs):
+        request = args[0]
+        product = get_object_or_404(Product, id=request.POST.get('product'))
+        quantity = int(request.POST.get('quantity'))
+        if product.stock_pcs < quantity:
+            messages.error(request ,"Sorry, the stock of this product is not enough!")
+            return redirect(reverse('mart:home'))
+        return func(*args, **kwargs)
+    return decorator
