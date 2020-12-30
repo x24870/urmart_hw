@@ -1,7 +1,18 @@
-body {
-  background-color: wheat;
+table,
+th,
+td {
+  border: 1px solid black;
 }
 
-th, td {
-  padding: 15px 0px;
+th {
+  background-color: #d3d3d3;
+}
+
+tbody tr:nth-child(even) {
+  background: #e5ecf9;
+}
+
+th,
+td {
+  padding: 0em 1em;
 }
