@@ -61,6 +61,7 @@
       <th>quantity</th>
       <th>price</th>
       <th>shop ID</th>
+      <th>delete order</th>
     </tr>
   </thead>
   <tbody>
@@ -71,6 +72,12 @@
       <td>{{ order.quantity }}</td>
       <td>{{ order.product.price }}</td>
       <td>{{ order.product.shop_id }}</td>
+      <td>
+        <form method="POST" action="{% url 'mart:delete_order' %}">{% csrf_token %}
+          <input type="hidden" name="order" id="order" value="{{ order.id }}">
+          <button class="delete-order-btn" type="submit">delete</button>
+        </form>
+      </td>
     </tr>
     {% endfor %}
   </tbody>

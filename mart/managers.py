@@ -8,3 +8,6 @@ class OrderManager(models.Manager):
         product.save()
 
         return new_order
+
+    def delete(self):
+        print(self)

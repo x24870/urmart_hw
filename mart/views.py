@@ -30,3 +30,9 @@ def create_order(request):
         quantity=quantity
         )
     return redirect(reverse('mart:home'))
+
+@require_http_methods(['POST'])
+def delete_order(request):
+    order = get_object_or_404(Order, id=request.POST.get('order'))
+    order.delete()
+    return redirect(reverse('mart:home'))
