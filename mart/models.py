@@ -28,13 +28,12 @@ class Order(models.Model):
     quantity = models.PositiveIntegerField()
 
     @property
-    def customer(self):
-        return str(self.customer.id)
-
-    @property
     def price(self):
         return str(self.product.price)
 
     @property
     def shop_id(self):
         return str(self.product.shop_id)
+
+    def __str__(self):
+        return str(self.id)
