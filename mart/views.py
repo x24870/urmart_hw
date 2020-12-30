@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, reverse
+from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib.auth import get_user_model
 from django.views.decorators.http import require_http_methods
 
@@ -17,5 +17,8 @@ def home(request):
 
 @require_http_methods(['POST'])
 def create_order(request):
-    print(request.POST)
+    user = get_object_or_404(User, id=request.POST.get('user'))
+    product = get_object_or_404(Product, id=request.POST.get('product'))
+    quantity = request.POST.get('quantity')
+    print(user, product, quantity, product.price)
     return redirect(reverse('mart:home'))

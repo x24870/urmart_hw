@@ -3,8 +3,16 @@
 
 {% block content %}
 <form  method="POST" action="{% url 'mart:create_order' %}">{% csrf_token %}
-  <label for="users">Choose a user:</label>
-  <select name="users" id="users">
+  <label for="product">Choose a product:</label>
+  <select name="product" id="product">
+    {% for product in products %}
+    <option value="{{ product.id }}">{{ product.id }}</option>
+    {% endfor %}
+  </select>
+  <label for="quantity">Quantity:</label>
+  <input type="number" min="1" name="quantity" id="quantity" value="1" required>
+  <label for="user">Choose a user:</label>
+  <select name="user" id="user">
     {% for user in users %}
     <option value="{{ user.id }}">{{ user.id }}</option>
     {% endfor %}
