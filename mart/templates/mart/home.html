@@ -2,6 +2,16 @@
 {% load static %}
 
 {% block content %}
+<form  method="POST" action="{% url 'mart:create_order' %}">{% csrf_token %}
+  <label for="users">Choose a user:</label>
+  <select name="users" id="users">
+    {% for user in users %}
+    <option value="{{ user.id }}">{{ user.id }}</option>
+    {% endfor %}
+  </select>
+  <input type="submit" value="Submit">
+</form>
+
 <h3>Products List</h3>
 <table>
   <thead>
