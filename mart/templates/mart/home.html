@@ -1,0 +1,32 @@
+{% extends 'mart/base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<table>
+  <thead>
+    <tr>
+      <!-- <th colspan="2">The table header</th> -->
+      <th>ID</th>
+      <th>stock</th>
+      <th>price</th>
+      <th>shop ID</th>
+      <th>VIP</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for product in products %}
+    <tr>
+      <td>{{ product.id }}</td>
+      <td>{{ product.stock_pcs }}</td>
+      <td>{{ product.price }}</td>
+      <td>{{ product.shop_id }}</td>
+      <td>{{ product.vip_only }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+
+{% endblock %}
