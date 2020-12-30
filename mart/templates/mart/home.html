@@ -20,6 +20,12 @@
   <input type="submit" value="Submit">
 </form>
 
+{% if messages %}
+  {% for message in messages %}
+  <h4 class="messages">{{ message }}</h4>
+  {% endfor %}
+{% endif %}
+
 <h3>Products List</h3>
 <table>
   <thead>

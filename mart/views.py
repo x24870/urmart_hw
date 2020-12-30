@@ -3,6 +3,7 @@ from django.contrib.auth import get_user_model
 from django.views.decorators.http import require_http_methods
 
 from .models import *
+from .decorators import vip_required
 
 User = get_user_model()
 
@@ -15,7 +16,9 @@ def home(request):
         }
     return render(request, 'mart/home.html', context=context)
 
+
 @require_http_methods(['POST'])
+@vip_required
 def create_order(request):
     user = get_object_or_404(User, id=request.POST.get('user'))
     product = get_object_or_404(Product, id=request.POST.get('product'))
