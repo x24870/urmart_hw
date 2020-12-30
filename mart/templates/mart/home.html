@@ -11,10 +11,10 @@
   </select>
   <label for="quantity">Quantity:</label>
   <input type="number" min="1" name="quantity" id="quantity" value="1" required>
-  <label for="user">Choose a user:</label>
-  <select name="user" id="user">
-    {% for user in users %}
-    <option value="{{ user.id }}">{{ user.id }}</option>
+  <label for="customer">Choose a customer:</label>
+  <select name="customer" id="customer">
+    {% for customer in customers %}
+    <option value="{{ customer.id }}">{{ customer.id }}</option>
     {% endfor %}
   </select>
   <input type="submit" value="Submit">

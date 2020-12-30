@@ -1,18 +1,16 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
-from django.contrib.auth import get_user_model
 from django.views.decorators.http import require_http_methods
 
 from .models import *
 from .decorators import vip_required, stock_is_enogh
 
-User = get_user_model()
-
 def home(request):
     products = Product.objects.all()
-    users = User.objects.filter(is_superuser=False)
+    customers = Customer.objects.filter()
+    print(customers)
     context = {
         'products': products,
-        'users': users,
+        'customers': customers,
         }
     return render(request, 'mart/home.html', context=context)
 
@@ -21,8 +19,9 @@ def home(request):
 @vip_required
 @stock_is_enogh
 def create_order(request):
-    user = get_object_or_404(User, id=request.POST.get('user'))
+    customers = get_object_or_404(Customer, id=request.POST.get('customer'))
     product = get_object_or_404(Product, id=request.POST.get('product'))
     quantity = request.POST.get('quantity')
-    print(user, product, quantity, product.price)
+    print(customers, product, quantity, product.price)
+    order = Order(customer=customers ,product=product, quantity=quantity)
     return redirect(reverse('mart:home'))
