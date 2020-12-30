@@ -8,7 +8,7 @@ def vip_required(func):
         request = args[0]
         product = get_object_or_404(Product, id=request.POST.get('product'))
         customer = get_object_or_404(Customer, id=request.POST.get('customer'))
-        if product.vip_only and not customer.vip:
+        if product.vip_only and not customer.user.vip:
             messages.error(request ,"This product only available for VIP members!")
             return redirect(reverse('mart:home'))
         return func(*args, **kwargs)

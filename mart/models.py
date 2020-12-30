@@ -1,6 +1,8 @@
 from django.db import models
 from django.conf import settings
 
+from .managers import OrderManager
+
 class Customer(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
@@ -26,6 +28,8 @@ class Order(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField()
+
+    objects = OrderManager()
 
     @property
     def price(self):

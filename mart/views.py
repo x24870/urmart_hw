@@ -7,7 +7,6 @@ from .decorators import vip_required, stock_is_enogh
 def home(request):
     products = Product.objects.all()
     customers = Customer.objects.filter()
-    print(customers)
     context = {
         'products': products,
         'customers': customers,
@@ -19,9 +18,13 @@ def home(request):
 @vip_required
 @stock_is_enogh
 def create_order(request):
-    customers = get_object_or_404(Customer, id=request.POST.get('customer'))
+    customer = get_object_or_404(Customer, id=request.POST.get('customer'))
     product = get_object_or_404(Product, id=request.POST.get('product'))
     quantity = request.POST.get('quantity')
-    print(customers, product, quantity, product.price)
-    order = Order(customer=customers ,product=product, quantity=quantity)
+    # print(customers, product, quantity, product.price)
+    order = Order.objects.create_order(
+        customer=customer,
+        product=product,
+        quantity=quantity
+        )
     return redirect(reverse('mart:home'))
