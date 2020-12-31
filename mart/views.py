@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.views.decorators.http import require_http_methods
+from django.contrib import messages
 
 from .models import *
 from .decorators import vip_required, stock_is_enogh
@@ -34,5 +35,7 @@ def create_order(request):
 @require_http_methods(['POST'])
 def delete_order(request):
     order = get_object_or_404(Order, id=request.POST.get('order'))
+    if order.product.stock_pcs == 0:
+        messages.info(request, f'Product ID {order.product.id} was replenished.')
     order.delete()
     return redirect(reverse('mart:home'))
