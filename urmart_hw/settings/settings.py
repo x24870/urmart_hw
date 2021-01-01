@@ -14,11 +14,14 @@ import os
 from pathlib import Path
 
 import environ
-env = environ.Env()
-environ.Env.read_env()# read .env file
+
+env = environ.Env(
+    ALLOWED_HOSTS=(list, [])
+)
+environ.Env().read_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 # Quick-start development settings - unsuitable for production
@@ -30,8 +33,7 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('DEBUG')
 
-ALLOWED_HOSTS = env('ALLOWED_HOSTS').split(',')
-
+ALLOWED_HOSTS: [str] = env('ALLOWED_HOSTS')
 
 # Application definition
 
