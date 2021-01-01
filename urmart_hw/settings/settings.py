@@ -44,6 +44,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # third party app
+    'django_q',
+    # local app
     'users',
     'mart',
 ]
@@ -108,6 +111,17 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# djnago_q
+Q_CLUSTER = { 
+    'name': 'DjangORM', 
+    'workers': 1, 
+    'timeout': 1800, 
+    'retry': 120, 
+    'queue_limit': 50, 
+    'bulk': 10, 
+    'orm': 'default',
+    'poll': 2
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/

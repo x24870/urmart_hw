@@ -36,6 +36,10 @@ class Order(models.Model):
         return str(self.product.price)
 
     @property
+    def total_price(self):
+        return str(int(self.product.price) * self.quantity)
+
+    @property
     def shop_id(self):
         return str(self.product.shop_id)
 
